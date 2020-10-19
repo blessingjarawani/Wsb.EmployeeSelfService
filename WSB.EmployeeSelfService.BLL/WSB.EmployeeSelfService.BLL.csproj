@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Shared\Interfaces\" />
     <Folder Include="Infrastructure\Shared\Services\" />
   </ItemGroup>
 
