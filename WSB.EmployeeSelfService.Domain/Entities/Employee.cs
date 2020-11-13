@@ -30,5 +30,6 @@ namespace WSB.EmployeeSelfService.Domain.Entities
 
         public ICollection<LeaveApplication> LeaveApplications { get; set; }
         public ICollection<Payslip> Payslips { get; set; }
+        public ICollection<LeaveApprovers> LeaveApprovers { get; set; }
     }
 }

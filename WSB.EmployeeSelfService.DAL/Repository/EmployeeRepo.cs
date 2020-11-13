@@ -10,7 +10,7 @@ using WSB.EmployeeSelfService.DAL.DataContexts;
 
 namespace WSB.EmployeeSelfService.DAL.Repository
 {
-    public class EmployeeRepo: IEmployeeRepo
+    public class EmployeeRepo : IEmployeeRepo
     {
         private readonly WSBEmployeeSelfServiceDataContext _dbContext;
         private readonly IMapper _mapper;
@@ -26,5 +26,10 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             return _mapper.Map<List<EmployeeDTO>>(result);
         }
 
+        public async Task<EmployeeDTO> GetEmployeeByEmpCode(string empCode)
+        {
+            var result = await _dbContext.Employees.FirstOrDefaultAsync(x => x.Empcode == empCode);
+            return _mapper.Map<EmployeeDTO>(result);
+        }
     }
 }

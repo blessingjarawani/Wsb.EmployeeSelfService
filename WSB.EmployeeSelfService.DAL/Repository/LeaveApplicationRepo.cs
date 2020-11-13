@@ -10,6 +10,7 @@ using WSB.EmployeeSelfService.BLL.Infrastructure.DTO;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Interfaces;
 using WSB.EmployeeSelfService.DAL.DataContexts;
 using WSB.EmployeeSelfService.Domain.Entities;
+using static WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary.Dictionary;
 
 namespace WSB.EmployeeSelfService.DAL.Repository
 {
@@ -30,6 +31,36 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             return _mapper.Map<List<LeaveApplicationDTO>>(result);
         }
 
+
+        public async Task<List<LeaveApplicationDTO>> GetEmployeeApplications(int empCode)
+        {
+            var result = await _dbContext.LeaveApplications.Where(x => x.IsActive && x.EmployeeId == empCode)?.ToListAsync();
+            return _mapper.Map<List<LeaveApplicationDTO>>(result);
+        }
+
+        public async Task<List<LeaveApproversDTO>> GetEmployeeApprovers(string empCode)
+        {
+            var result = await _dbContext.LeaveApprovers.Include(y => y.Employee)
+                .Include(z => z.User)?.Where(u => u.Employee.Empcode == empCode)?
+                .Select(t => new LeaveApproversDTO
+                {
+                    Email = t.User.Email ?? string.Empty,
+                    EmployeeCode = t.Employee.Empcode,
+                    FirstName = t.User.FirstName,
+                    LastName = t.User.LastName,
+                    LeaveApprovalLevel = t.User.LeaveApprovalLevel.Value,
+                    UserId = t.User.Id
+                })?.ToListAsync();
+            return result;
+        }
+
+        public async Task<bool> UpdateStatus(LeaveStatus leaveStatus, int leaveId)
+        {
+            var result = await _dbContext.LeaveApplications.FirstOrDefaultAsync(x => x.Id == leaveId);
+            if (result != null)
+                result.LeaveStatus = leaveStatus;
+            return await _dbContext.SaveChangesAsync() >= 0;
+        }
         public async Task<LeaveApplicationDTO> AddOrUpdateLeave(AddLeaveApplicationCommand addLeaveApplicationCommand)
         {
             var leave = await _dbContext.LeaveApplications.FirstOrDefaultAsync(x => x.Id == addLeaveApplicationCommand.Id);
@@ -46,7 +77,7 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             return _mapper.Map<LeaveApplicationDTO>(leave);
         }
 
-        private  LeaveApplication Add(AddLeaveApplicationCommand addLeaveApplicationCommand)
+        private LeaveApplication Add(AddLeaveApplicationCommand addLeaveApplicationCommand)
         {
             return new LeaveApplication
             {
@@ -60,7 +91,7 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             };
         }
 
-        private  void Update(AddLeaveApplicationCommand addLeaveApplicationCommand, LeaveApplication leave)
+        private void Update(AddLeaveApplicationCommand addLeaveApplicationCommand, LeaveApplication leave)
         {
             leave.LeaveType = addLeaveApplicationCommand.LeaveType;
             leave.DateFrom = addLeaveApplicationCommand.DateFrom;

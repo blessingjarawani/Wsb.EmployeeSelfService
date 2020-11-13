@@ -15,6 +15,9 @@ namespace WSB.EmployeeSelfService.DAL.DataContexts
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<LeaveApplication> LeaveApplications { get; set; }
         public virtual DbSet<Payslip> Payslips { get; set; }
+        public virtual DbSet<LeaveApprovers> LeaveApprovers { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+
         public WSBEmployeeSelfServiceDataContext(DbContextOptions<WSBEmployeeSelfServiceDataContext> options) : base(options)
         {
 

@@ -9,6 +9,7 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.DTO
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
+        public string EmployeeCode { get; set; }
         public LeaveType LeaveType { get; set; }
         public string Description { get; set; }
         public string Comment { get; set; }

@@ -16,6 +16,14 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary
             Manager = 2,
         }
 
+        public enum LeaveApprovalLevel
+        {
+            Default = 0,
+            First = 1,
+            Second = 2,
+            Third = 3
+        }
+
         public enum EmployeeStatus
         {
             [Display(Name = "Permanent")]
@@ -68,7 +76,7 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary
             PendingFinalApproval = 1,
             [Display(Name = "Approved")]
             Approved = 2
-           
+
         }
     }
 }
