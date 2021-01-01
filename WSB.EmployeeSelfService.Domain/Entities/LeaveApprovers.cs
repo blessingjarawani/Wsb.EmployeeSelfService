@@ -14,9 +14,6 @@ namespace WSB.EmployeeSelfService.Domain.Entities
 
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
-
-        public virtual Employee  Employee { get; set; }
-
         public ICollection<Employee> Employees { get; set; }
     }
 }

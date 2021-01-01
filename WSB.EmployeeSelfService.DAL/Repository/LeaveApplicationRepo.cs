@@ -40,12 +40,12 @@ namespace WSB.EmployeeSelfService.DAL.Repository
 
         public async Task<List<LeaveApproversDTO>> GetEmployeeApprovers(string empCode)
         {
-            var result = await _dbContext.LeaveApprovers.Include(y => y.Employee)
-                .Include(z => z.User)?.Where(u => u.Employee.Empcode == empCode)?
+            var result = await _dbContext.LeaveApprovers.Include(y => y.Employees)
+                .Include(z => z.User)?.Where(u => u.Employees.Any(y => y.Empcode == empCode))?
                 .Select(t => new LeaveApproversDTO
                 {
                     Email = t.User.Email ?? string.Empty,
-                    EmployeeCode = t.Employee.Empcode,
+                    EmployeeCode = t.Employees.FirstOrDefault().Empcode,
                     FirstName = t.User.FirstName,
                     LastName = t.User.LastName,
                     LeaveApprovalLevel = t.User.LeaveApprovalLevel.Value,

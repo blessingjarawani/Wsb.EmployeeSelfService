@@ -28,7 +28,6 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.DTO
 
         public Gender Gender { get; set; }
 
-        //public ICollection<LeaveApplication> LeaveApplications { get; set; }
-        //public ICollection<Payslip> Payslips { get; set; }
+        
     }
 }

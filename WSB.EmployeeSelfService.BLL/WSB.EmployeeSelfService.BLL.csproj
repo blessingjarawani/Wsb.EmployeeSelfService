@@ -1,11 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Shared\Services\" />
+    <Compile Remove="Infrastructure\Shared\Process\LeaveApplicationProcess.cs" />
+    <Compile Remove="Infrastructure\Shared\Process\LeaveBaseProcess.cs" />
+    <Compile Remove="Infrastructure\Shared\Process\LeaveProcessExecution.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Shared\Process\" />
+    <Folder Include="Infrastructure\Shared\Queries\Commands\" />
+    <Folder Include="Infrastructure\Shared\Queries\Handlers\CommandHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
