@@ -18,10 +18,31 @@ namespace WSB.EmployeeSelfService.Domain.Entities
         public string FirstName { get; set; }
 
         [MaxLength(50)]
-        public string CompanyName { get; set; }
+        public Company Company { get; set; }
 
         [MaxLength(50)]
         public string Department { get; set; }
+
+        [MaxLength(50)]
+        public string Email { get; set; }
+
+        [MaxLength(50)]
+        public string BankName { get; set; }
+
+        [MaxLength(50)]
+        public string Branch { get; set; }
+
+        [MaxLength(50)]
+        public string AccountNumber { get; set; }
+
+        [MaxLength(50)]
+        public string MedicalScheme { get; set; }
+
+        [MaxLength(50)]
+        public string AccNumber { get; set; }
+
+        [MaxLength(50)]
+        public string MedicalRefNo { get; set; }
         public Position Position { get; set; }
 
         public EmployeeStatus EmployeeStatus { get; set; }
