@@ -21,15 +21,17 @@ namespace Wsb.EmployeeSelfService.RestApi.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public async Task<IResponse<IEnumerable<EmployeeDTO>>> GetAllEmployees([FromBody] GetAllEmployeesQuery query)
         {
             return await _mediator.Send(query);
         }
-        [HttpGet("[action]")]
-        public async Task<IResponse<EmployeeDTO>> GetEmployeeByCode([FromBody] GetEmployeeByEmployeeCodeQuery query)
+        [HttpPost("[action]")]
+        public async Task<IResponse<EmployeeDTO>> GetEmployeeByCode(GetEmployeeByEmployeeCodeQuery query)
         {
             return await _mediator.Send(query);
         }
+
+       
     }
 }

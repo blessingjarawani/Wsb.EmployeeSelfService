@@ -51,7 +51,7 @@ namespace Wsb.EmployeeSelfService.RestApi
                
             }
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 
