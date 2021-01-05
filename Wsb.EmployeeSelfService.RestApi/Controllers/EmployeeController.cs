@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WSB.EmployeeSelfService.BLL.Infrastructure.DTO;
+using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Extensions;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Handlers.QueryHandlers;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Requests;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Responses;
+using static WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary.Dictionary;
 
 namespace Wsb.EmployeeSelfService.RestApi.Controllers
 {
@@ -27,11 +29,12 @@ namespace Wsb.EmployeeSelfService.RestApi.Controllers
             return await _mediator.Send(query);
         }
         [HttpPost("[action]")]
-        public async Task<IResponse<EmployeeDTO>> GetEmployeeByCode(GetEmployeeByEmployeeCodeQuery query)
+        public async Task<IResponse<EmployeeDTO>> GetEmployeeByCode([FromBody] GetEmployeeByEmployeeCodeQuery query)
         {
             return await _mediator.Send(query);
         }
 
        
+
     }
 }

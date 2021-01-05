@@ -61,7 +61,7 @@ namespace WSB.EmployeeSelfService.DAL.Repository
                 result.LeaveStatus = leaveStatus;
             return await _dbContext.SaveChangesAsync() >= 0;
         }
-        public async Task<LeaveApplicationDTO> AddOrUpdateLeave(AddLeaveApplicationCommand addLeaveApplicationCommand)
+        public async Task<bool> AddOrUpdateLeave(AddLeaveApplicationCommand addLeaveApplicationCommand)
         {
             var leave = await _dbContext.LeaveApplications.FirstOrDefaultAsync(x => x.Id == addLeaveApplicationCommand.Id);
             if (leave != null)
@@ -71,10 +71,10 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             else
             {
                 leave = Add(addLeaveApplicationCommand);
+                _dbContext.LeaveApplications.Add(leave);
 
             }
-            await _dbContext.SaveChangesAsync();
-            return _mapper.Map<LeaveApplicationDTO>(leave);
+            return await _dbContext.SaveChangesAsync() >= 0;
         }
 
         private LeaveApplication Add(AddLeaveApplicationCommand addLeaveApplicationCommand)

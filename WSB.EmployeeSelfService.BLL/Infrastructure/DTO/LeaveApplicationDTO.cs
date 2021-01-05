@@ -15,6 +15,8 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.DTO
         public string Comment { get; set; }
         public float DaysTaken { get; set; }
         public string LeaveStatus { get; set; }
+
+
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
     }

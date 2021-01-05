@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Shared\Process\" />
-    <Folder Include="Infrastructure\Shared\Queries\Commands\" />
-    <Folder Include="Infrastructure\Shared\Queries\Handlers\CommandHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
