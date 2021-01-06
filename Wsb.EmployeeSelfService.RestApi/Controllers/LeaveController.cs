@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WSB.EmployeeSelfService.BLL.Infrastructure.DTO;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Extensions;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Commands;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Handlers.CommandHandlers;
+using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Requests;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Responses;
 using static WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary.Dictionary;
 
@@ -35,5 +37,9 @@ namespace Wsb.EmployeeSelfService.RestApi.Controllers
 
         [HttpPost("[action]")]
         public async Task<IBaseResponse> SubmitLeave([FromBody] AddLeaveCommandQuery query) => await _mediator.Send(query);
+
+        [HttpPost("[action]")]
+        public async Task<IResponse<List<LeaveApplicationDTO>>> GetEmployeeLeaveApplications([FromBody] GetEmployeeLeaveApplicationsQuery query)
+             => await _mediator.Send(query);
     }
 }

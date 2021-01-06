@@ -16,7 +16,8 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.DTO
         public float DaysTaken { get; set; }
         public string LeaveStatus { get; set; }
 
-
+        public string DateFromString => DateFrom.ToString("dd-MM-yyyy");
+        public string DateToString => DateTo.ToString("dd-MM-yyyy");
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
     }
