@@ -38,6 +38,7 @@ namespace Wsb.EmployeeSelfService.RestApi
             services.AddDbContext<WSBEmployeeSelfServiceDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WSBEmployeeSelfServiceDataContext")));
             services.AddTransient<IEmployeeRepo, EmployeeRepo>();
             services.AddTransient<ILeaveApplicationRepo, LeaveApplicationRepo>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>(),
                             AppDomain.CurrentDomain.GetAssemblies());
         }

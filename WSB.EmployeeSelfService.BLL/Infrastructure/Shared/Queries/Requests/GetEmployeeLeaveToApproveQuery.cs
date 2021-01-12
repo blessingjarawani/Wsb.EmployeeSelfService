@@ -6,12 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WSB.EmployeeSelfService.BLL.Infrastructure.DTO;
 using WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Responses;
-using static WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Dictionary.Dictionary;
 
 namespace WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Queries.Requests
 {
-    public class GetEmployeeLeaveApplicationsQuery : IRequest<IResponse<List<LeaveApplicationDTO>>>
+    public class GetEmployeeLeaveToApproveQuery : IRequest<IResponse<IList<LeaveApplicationDTO>>>
     {
-        public string EmpCode { get; set; }
+        public string EmployeeCode { get; set; }
     }
 }

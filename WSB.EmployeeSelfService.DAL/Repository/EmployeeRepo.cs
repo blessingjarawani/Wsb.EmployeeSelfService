@@ -31,5 +31,10 @@ namespace WSB.EmployeeSelfService.DAL.Repository
             var result = await _dbContext.Employees.FirstOrDefaultAsync(x => x.Empcode == empCode);
             return _mapper.Map<EmployeeDTO>(result);
         }
+        public async Task<EmployeeDTO> GetEmployeeByID(int id)
+        {
+            var result = await _dbContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
+            return _mapper.Map<EmployeeDTO>(result);
+        }
     }
 }

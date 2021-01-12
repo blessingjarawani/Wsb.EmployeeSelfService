@@ -12,7 +12,7 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Interfaces
     {
         Task<List<LeaveApplicationDTO>> GetActiveApplications();
         Task<bool> AddOrUpdateLeave(AddLeaveApplicationCommand addLeaveApplicationCommand);
-        Task<List<LeaveApplicationDTO>> GetEmployeeApplications(int empCode);
+        Task<List<LeaveApplicationDTO>> GetEmployeeApplications(int empCode, LeaveStatus? leaveStatus = null);
         Task<List<LeaveApproversDTO>> GetEmployeeApprovers(string empCode);
         Task<bool> UpdateStatus(LeaveStatus leaveStatus, int leaveId);
     }

@@ -41,5 +41,12 @@ namespace Wsb.EmployeeSelfService.RestApi.Controllers
         [HttpPost("[action]")]
         public async Task<IResponse<List<LeaveApplicationDTO>>> GetEmployeeLeaveApplications([FromBody] GetEmployeeLeaveApplicationsQuery query)
              => await _mediator.Send(query);
+        [HttpPost("[action]")]
+        public async Task<IResponse<IList<LeaveApplicationDTO>>> GetLeaveToApprove([FromBody] GetEmployeeLeaveToApproveQuery query)
+            => await _mediator.Send(query);
+
+        [HttpPost("[action]")]
+        public async Task<IBaseResponse> ApproveLeave([FromBody] ApproveLeaveCommandQuery query)
+            => await _mediator.Send(query);
     }
 }

@@ -10,5 +10,6 @@ namespace WSB.EmployeeSelfService.BLL.Infrastructure.Shared.Interfaces
     {
         Task<List<EmployeeDTO>> GetActiveEmployees();
         Task<EmployeeDTO> GetEmployeeByEmpCode(string empCode);
+        Task<EmployeeDTO> GetEmployeeByID(int id);
     }
 }

@@ -16,7 +16,7 @@ namespace WSB.EmployeeSelfService.Domain.Entities
         public string Email { get; set; }
         [ForeignKey("Employee")]
         public int? EmployeeId { get; set; }
-        public LeaveApprovalLevel ? LeaveApprovalLevel { get; set; }
+        public LeaveApprovalLevel? LeaveApprovalLevel { get; set; }
 
     }
 }

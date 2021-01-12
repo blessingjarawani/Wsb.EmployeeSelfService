@@ -32,10 +32,12 @@ namespace WSB.EmployeeSelfService.DAL.Repository
         }
 
 
-        public async Task<List<LeaveApplicationDTO>> GetEmployeeApplications(int empCode)
+        public async Task<List<LeaveApplicationDTO>> GetEmployeeApplications(int empCode, LeaveStatus? leaveStatus = null)
         {
-            var result = await _dbContext.LeaveApplications.Where(x => x.EmployeeId == empCode)
-                .OrderByDescending(y=>y.DateFrom)?.ToListAsync();
+            var query = _dbContext.LeaveApplications.Where(x => x.EmployeeId == empCode);
+            if (leaveStatus.HasValue)
+                query = query.Where(x => x.LeaveStatus == leaveStatus.Value);
+            var result = await query.OrderByDescending(x => x.DateFrom)?.ToListAsync();
             return _mapper.Map<List<LeaveApplicationDTO>>(result);
         }
 

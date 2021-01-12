@@ -27,6 +27,10 @@ namespace WSB.EmployeeSelfService.DAL.Mapper
                 (dest => dest.LeaveStatus, m => m.MapFrom(u => u.LeaveStatus.DisplayName()))
                 .ForMember
                 (dest => dest.LeaveType, m => m.MapFrom(u => u.LeaveType.DisplayName()));
+            CreateMap<Users, UserDTO>()
+              .ForMember
+              (dest => dest.IsApprover, m => m.MapFrom(u => u.LeaveApprovalLevel.HasValue ? u.LeaveApprovalLevel.Value : 0));
+
             CreateMap<LeaveApprovers, LeaveApproversDTO>();
         }
     }
